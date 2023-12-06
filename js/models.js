@@ -23,9 +23,11 @@ class Story {
 
   /** Parses hostname out of URL and returns it. */
 
+  /** GOOGLE GENERATIVE AI SEARCH */
   getHostName() {
     // UNIMPLEMENTED: complete this function!
-    let hostname = this.url.filter;
+    const regex = /^(?:https?:\/\/)?(?:www\.)?([a-zA-Z0-9]+\.[a-zA-Z]+)$/;
+    const hostname = regex.exec(url)[1];
     return hostname;
   }
 }
