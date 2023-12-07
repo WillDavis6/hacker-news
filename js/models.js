@@ -21,15 +21,17 @@ class Story {
     this.createdAt = createdAt;
   }
 
+ 
   /** Parses hostname out of URL and returns it. */
 
   /** GOOGLE GENERATIVE AI SEARCH */
   getHostName() {
     // UNIMPLEMENTED: complete this function!
     const regex = /^(?:https?:\/\/)?(?:www\.)?([a-zA-Z0-9]+\.[a-zA-Z]+)$/;
-    const hostname = regex.exec(url)[1];
+    const hostname = regex.exec(this.url)[1];
     return hostname;
   }
+
 }
 
 
@@ -40,6 +42,10 @@ class Story {
 class StoryList {
   constructor(stories) {
     this.stories = stories;
+
+    addStoryToList() {
+     this.stories.push('new_story')
+    }
   }
 
   /** Generate a new StoryList. It:
@@ -77,7 +83,11 @@ class StoryList {
    */
 
   async addStory( /* user, newStory */) {
-    // UNIMPLEMENTED: complete this function!
+    // UNIMPLEMENTED: complete this function
+      this.storyId
+      // build DOM elements for the story including all elements of the constructor
+      postStoryToApi(this.storyId, this.title, this.author, this.url, this.username, this.createdAt)
+    
   }
 }
 
