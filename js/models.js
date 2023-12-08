@@ -42,12 +42,11 @@ class Story {
 class StoryList {
   constructor(stories) {
     this.stories = stories;
-
-    addStoryToList() {
-     this.stories.push('new_story')
-    }
+  
   }
-
+  addStoryToList() {
+    this.stories.push('new_story')
+   }
   /** Generate a new StoryList. It:
    *
    *  - calls the API
@@ -82,7 +81,16 @@ class StoryList {
    * Returns the new Story instance
    */
 
-  async addStory( /* user, newStory */) {
+  async addStory(user, newStory) {
+    $('.stories-list').append(`<div class="story">` + ``)
+
+    let newStory = {
+      title: this.title,
+      author: this.author,
+      url: this.url
+    }
+
+    
     // UNIMPLEMENTED: complete this function
       this.storyId
       // build DOM elements for the story including all elements of the constructor
