@@ -88,6 +88,7 @@ class StoryList {
       title: this.title,
       author: this.author,
       url: this.url
+      
     }
 
     
