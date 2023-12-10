@@ -82,20 +82,12 @@ class StoryList {
    */
 
   async addStory(user, newStory) {
-    $('.stories-list').append(`<div class="story">` + ``)
-
-    let newStory = {
-      title: this.title,
-      author: this.author,
-      url: this.url
-      
-    }
-
-    
+      const res = await axios.post('', {title: this.title, author: this.author, url: this.url})
     // UNIMPLEMENTED: complete this function
-      this.storyId
+    console.log(res)
+    return res;
       // build DOM elements for the story including all elements of the constructor
-      postStoryToApi(this.storyId, this.title, this.author, this.url, this.username, this.createdAt)
+      
     
   }
 }
