@@ -44,9 +44,6 @@ class StoryList {
     this.stories = stories;
   
   }
-  addStoryToList() {
-    this.stories.push('new_story')
-   }
   /** Generate a new StoryList. It:
    *
    *  - calls the API
@@ -81,11 +78,17 @@ class StoryList {
    * Returns the new Story instance
    */
 
-  async addStory(user, newStory) {
-      const res = await axios.post('', {title: this.title, author: this.author, url: this.url})
+  async addStory(user, { title, author, url }) {
+    const token = user.loginToken;
+    const res = await axios.post('https://hack-or-snooze-v3.herokuapp.com/stories',
+      { token, story: { title, author, url } },
+    );
     // UNIMPLEMENTED: complete this function
-    console.log(res)
-    return res;
+    const story = new Story(res.data.story);
+    this.stories.unshift(story);
+    user.ownStories.unshift(story);
+
+    return story;
       // build DOM elements for the story including all elements of the constructor
       
     
