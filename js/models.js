@@ -26,10 +26,7 @@ class Story {
 
   /** GOOGLE GENERATIVE AI SEARCH */
   getHostName() {
-    // UNIMPLEMENTED: complete this function!
-    const regex = /^(?:https?:\/\/)?(?:www\.)?([a-zA-Z0-9]+\.[a-zA-Z]+)$/;
-    const hostname = regex.exec(this.url)[1];
-    return hostname;
+    return new URL(this.url).host;
   }
 
 }
@@ -78,11 +75,13 @@ class StoryList {
    * Returns the new Story instance
    */
 
-  async addStory(user, { title, author, url }) {
+  async addStory(user, { title, author, url, username }) {
     const token = user.loginToken;
-    const res = await axios.post('https://hack-or-snooze-v3.herokuapp.com/stories',
-      { token, story: { title, author, url } },
-    );
+    const res = await axios({
+      method: "POST",
+      url: `${BASE_URL}/stories`,
+      data: { token, story: {title, author, url, username }},
+    });
     // UNIMPLEMENTED: complete this function
     const story = new Story(res.data.story);
     this.stories.unshift(story);

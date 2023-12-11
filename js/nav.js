@@ -36,10 +36,10 @@ function updateNavOnLogin() {
 }
 
 function navSubmitClick(evt) {
-  console.log("navSubmitClick", evt);
- $submitForm.show();
- console.log('buttter me timber!')
+  console.debug("navSubmitClick", evt);
+  hidePageComponents();
+  $allStoriesList.show();
+  $submitForm.show();
 }
 
 $navSubmit.on('click', navSubmitClick);
-$storySubmitButton.on('click', $submitForm.hide())
