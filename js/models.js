@@ -75,17 +75,33 @@ class StoryList {
    * Returns the new Story instance
    */
 
-  async addStory(user, { title, author, url, username }) {
+  async addStory(user, { title, author, url }) {
+   
     const token = user.loginToken;
+    
+    ///////////////////////////////////////////////////////////////////////////////////////////
+    //PROBLEM WITH POSTING DIRECTLY BELOW // PROBLEM WITH POSTING DIRECLTY BELOW
+
     const res = await axios({
       method: "POST",
-      url: `${BASE_URL}/stories`,
-      data: { token, story: {title, author, url, username }},
+      url: `https://hack-or-snooze-v3.herokuapp.com/stories`,
+      data: { token, story: {title, author, url }},
     });
+
+    console.log('issue is not res data');
     // UNIMPLEMENTED: complete this function
     const story = new Story(res.data.story);
+
+    console.log('issue is not new Story');
+
     this.stories.unshift(story);
+
+    console.log('issue is not unshift 1');
+
     user.ownStories.unshift(story);
+
+    console.log('issue is the return');
+
 
     return story;
       // build DOM elements for the story including all elements of the constructor

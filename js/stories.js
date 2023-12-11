@@ -58,13 +58,23 @@ async function newStoriesSubmission(e) {
   const author = $("story-author").val();
   const title = $("story-title").val();
   const url = $("story-url").val();
-  const username = currentUser.uswername;
-  const storyData = { title, url, author, username };
-
+  const username = currentUser.username;
+  const storyData = { title, author, url };
+  
   const story = await storyList.addStory(currentUser, storyData);
+  
+  console.log('the problem is not the await');
+  
   const $story = generateStoryMarkup(story);
+  
+  console.log('the problem is not the Markup');
+  
   $allStoriesList.prepend($story);
+  
+  console.log('the problem is not the prepend');
 
+
+  console.log('about to enter $submitForm edtis');
   $submitForm.slideUp("slow");
   $submitForm.trigger("reset");
 }
