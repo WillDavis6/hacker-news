@@ -51,25 +51,48 @@ function putStoriesOnPage() {
   $allStoriesList.show();
 }
 
-async function newStoriesSubmission(e) {
+async function submitNewStory(evt) {
+  console.debug("submitNewStory");
+  evt.preventDefault();
 
-  e.preventDefault();
-  console.debug("newStoriesSubmission");
-  const author = $("story-author").val();
-  const title = $("story-title").val();
-  const url = $("story-url").val();
-  const username = currentUser.username;
+  // grab all info from form
+  const title = $("#story-title").val();
+  const url = $("#story-url").val();
+  const author = $("#story-author").val();
+  const username = currentUser.username
   const storyData = { title, url, author, username };
-  
+
   const story = await storyList.addStory(currentUser, storyData);
+
   const $story = generateStoryMarkup(story);
   $allStoriesList.prepend($story);
 
+  // hide the form and reset it
   $submitForm.slideUp("slow");
   $submitForm.trigger("reset");
 }
 
-$submitForm.on("submit", newStoriesSubmission);
+$submitForm.on("submit", submitNewStory);
+
+// async function newStoriesSubmission(e) {
+
+//   e.preventDefault();
+//   console.debug("newStoriesSubmission");
+//   const author = $("story-author").val();
+//   const title = $("story-title").val();
+//   const url = $("story-url").val();
+//   const username = currentUser.username;
+//   const storyData = { title, url, author, username };
+  
+//   const story = await storyList.addStory(currentUser, storyData);
+//   const $story = generateStoryMarkup(story);
+//   $allStoriesList.prepend($story);
+
+//   $submitForm.slideUp("slow");
+//   $submitForm.trigger("reset");
+// }
+
+// $submitForm.on("submit", newStoriesSubmission);
 
 
 function putUserStoriesOnPage() {
