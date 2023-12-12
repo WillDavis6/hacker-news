@@ -66,21 +66,23 @@
 
 <!-- Login and signup forms / submit form -->
 <section class="account-forms-container container">
-  <form action="#" id="submit-form" class="account-form hidden" method="post">
-    <h4>Submit New Story</h4>
-    <div class="new-story-input">
+
+  <!-- form to submit new stories-->
+  <form action="" id="submit-form" class="hidden">
+    
+    <div>
       <label for="story-author">author</label>
-      <input id="story-author">
+      <input id="story-author" required placeholder="author name">
     </div>
-    <div class="new-story-input">
+    <div>
       <label for="story-title">title</label>
-      <input id="story-title">
+      <input id="story-title" required placeholder="story title">
     </div>
-    <div class="new-story-input">
+    <div>
       <label for="story-url">url</label>
-      <input id="story-url">
+      <input id="story-url" required type="url" placeholder="story url">
     </div>
-    <button class="story-submit-button" type="submit">submit</button>
+    <button type="submit">submit</button>
     <hr>
   </form>
 
