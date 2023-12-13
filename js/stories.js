@@ -5,6 +5,8 @@ let storyList;
 
 /** Get and show stories when site first loads. */
 
+const $favoriteStory = $('.star-images');
+
 async function getAndShowStoriesOnStart() {
   storyList = await StoryList.getStories();
   $storiesLoadingMsg.remove();
@@ -25,6 +27,8 @@ function generateStoryMarkup(story) {
   const hostName = story.getHostName();
   return $(`
       <li id="${story.storyId}">
+      <a class='star-image unfavorite-image'>
+      </a>
         <a href="${story.url}" target="a_blank" class="story-link">
           ${story.title}
         </a>
@@ -111,3 +115,52 @@ function putUserStoriesOnPage() {
 
   $ownStories.show();
 }
+
+
+
+function putFavoritesOnPage() {
+  console.debug("putFavoritesOnPage");
+
+  $favoritedStories.empty();
+
+  if (currentUser.favorites.length === 0) {
+    $favoritedStories.append("<h5>No favorties added! </h5>")
+  }
+  else {
+    for (let story of currentUser.favorites) {
+      const $story = generateStoryMarkup(story);
+      $favoritedStories.append($story);
+    }
+  }
+  $favoritedStories.show();
+}
+
+
+
+
+async function favoriteStoryToggle(e) {
+  e.preventDefault();
+  console.debug("favoriteStory");
+
+  const $target = $(e.target);
+  const $closestLi = $target.closest("li");
+  const storyId = $closestLi.attr("id");
+  const story = storyList.stories.find(s => s.storyId === storyId)
+
+  if ($target.hasClass('fav')) {
+    await currentUser.removeFavorite(story);
+    $target.closest("i").toggleClass("fav unfav");
+  } else {
+    await currentUser.addFavorite(story);
+    $target.closest("i").toggleClass("unfav fav");
+  }
+
+
+    e.target.remove('.unfavorite-image').add('.favoite-image');
+
+}
+
+
+
+$favoriteStory.on("click", ".star-images", favoriteStoryToggle);
+

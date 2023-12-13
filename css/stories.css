@@ -1,4 +1,19 @@
 /* Lists of stories */
+.favorite-image {
+  width: 10px;
+  height: 5px;
+  background-image: url("./fav-star.jpeg");
+  background-size: cover;
+}
+
+.unfavorite-image {
+  width: 10px;
+  height: 5px;
+  background-image: url("unfav-star.webp");
+  background-size: cover;
+}
+
+
 
 .stories-list {
   margin: 20px 5px;
@@ -36,4 +51,18 @@
 
 .story-user {
   display: block;
+}
+
+.favorite-image {
+  width: 10px;
+  height: 5px;
+  background-image: url("./fav-star.jpeg");
+  background-size: cover;
+}
+
+.unfavorite-image {
+  width: 10px;
+  height: 5px;
+  background-image: url("unfav-star.webp");
+  background-size: cover;
 }
