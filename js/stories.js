@@ -39,6 +39,21 @@ function generateStoryMarkup(story) {
     `);
 }
 
+function getDeleteBtnHTML() {
+  return `
+<span class="trash-can">
+<i class="fav fa-trash-alt"></i>
+</span>`;
+}
+
+function getStarHTML(story, user) {
+  const isFavorite = user.isFavorite(story);
+  const starType = isFavorite ? "fav" : "unfav";
+  return `
+  <span class="star">
+  <i class="${starType} fa-star"></i>
+  </span>`;
+}
 /** Gets list of stories from server, generates their HTML, and puts on page. */
 
 function putStoriesOnPage() {
@@ -54,6 +69,19 @@ function putStoriesOnPage() {
 
   $allStoriesList.show();
 }
+
+async function deleteStory(evt) {
+  console.debug("deleteStory");
+
+  const $closestLi = $(evt.target).closest("li");
+  const storyId = $closestLi.attr("id");
+
+  await storyList.removeStory(currentUser, stroyId);
+
+  await putUserStoriesOnPage();
+}
+
+$ownStories.on("click", ".trash-can", deleteStory);
 
 async function submitNewStory(evt) {
   console.debug("submitNewStory");

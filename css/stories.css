@@ -53,14 +53,14 @@
   display: block;
 }
 
-.favorite-image {
+.fav {
   width: 10px;
   height: 5px;
   background-image: url("./fav-star.jpeg");
   background-size: cover;
 }
 
-.unfavorite-image {
+.unfav{
   width: 10px;
   height: 5px;
   background-image: url("unfav-star.webp");
