@@ -25,6 +25,8 @@ function generateStoryMarkup(story) {
   // console.debug("generateStoryMarkup", story);
 
   const hostName = story.getHostName();
+
+  const showStar = Boolean(currentUser);
   return $(`
       <li id="${story.storyId}">
       <a class='star-image unfavorite-image'>
